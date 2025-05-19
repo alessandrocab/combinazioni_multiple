@@ -49,6 +49,13 @@ input[type="text"] {
 .input-wrapper {
   position: relative;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  flex: 1;
+  padding-right: 40px; /* spazio per l’occhio */
 }
 
 .eye-button {
@@ -60,7 +67,7 @@ input[type="text"] {
   font-size: 20px;
   cursor: pointer;
   border: none;
-  color: #000;
+  color: #ccc;
 }
 
 button {
