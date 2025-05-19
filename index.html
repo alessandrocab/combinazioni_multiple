@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Combinazione Segreta</title>
+  <title>Caccia al Tesoro</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <canvas id="matrixRain"></canvas>
-  <audio id="bg-music" src="background.mp3" autoplay loop></audio>
 
-  <div class="fog-layer fog-back"></div>
-  <div class="fog-layer fog-front"></div>
+  <div class="container" id="intro">
+    <h1>Benvenuto alla Caccia al Tesoro</h1>
+    <button onclick="startEnigma()">Inizia</button>
+  </div>
 
-  <div class="container" id="main">
+  <div class="container" id="main" style="display: none;">
     <h1>Inserisci la combinazione corretta</h1>
-    <div class="input-wrapper">
-      <input type="password" id="passwordInput" placeholder="Combinazione segreta" />
-      <button class="eye-button" onclick="togglePassword()">👁</button>
-    </div>
-    <button onclick="checkPassword()">Svela il segreto</button>
+    <input type="password" id="passwordInput" placeholder="Combinazione" />
+    <button onclick="togglePassword()">Mostra/Nascondi</button>
+    <button onclick="checkPassword()">Invia</button>
   </div>
 
-  <div class="revealed" id="revealed" style="display: none;">
-    <div class="magic-text">✨ Hai scoperto il luogo segreto! ✨</div>
-    <button style="margin-top: 30px;" onclick="goBack()">⬅ Torna indietro</button>
+  <div class="container" id="revealed" style="display: none;">
+    <h2>Complimenti, combinazione corretta!</h2>
+    <button onclick="goBack()">Torna Indietro</button>
   </div>
 
-  <!-- Alert personalizzato -->
   <div id="custom-alert" class="custom-alert hidden">
-    <div class="custom-alert-box">
-      <p>Combinazione errata</p>
-      <button onclick="closeCustomAlert()">OK</button>
-    </div>
+    <p>Combinazione errata!</p>
+    <button onclick="closeCustomAlert()">Chiudi</button>
   </div>
+
+  <audio id="bg-music" src="background.mp3" loop></audio>
 
   <script src="script.js"></script>
 </body>
+
 </html>
