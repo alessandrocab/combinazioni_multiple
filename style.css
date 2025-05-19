@@ -44,6 +44,7 @@ input[type="text"] {
   box-sizing: border-box;
   border-radius: 10px;
   border: 1px solid #ccc;
+  padding-right: 40px; /* spazio per l’occhio */
 }
 
 .input-wrapper {
@@ -55,7 +56,6 @@ input[type="text"] {
 
 .input-wrapper input {
   flex: 1;
-  padding-right: 40px; /* spazio per l’occhio */
 }
 
 .eye-button {
@@ -162,21 +162,32 @@ button:hover {
 .hidden {
   display: none;
 }
+
 @media (max-width: 480px) {
   .container,
   #intro,
   #enigma1,
   #enigma2,
   #enigma3,
-  #revealed-content {
+  .revealed-content {
     width: 90%;
     padding: 15px;
     font-size: 16px;
+    margin: 20px auto;
   }
 
   input[type="password"],
   input[type="text"] {
     font-size: 16px;
+    padding: 10px;
+    padding-right: 40px; /* spazio per l’occhio */
+  }
+
+  .eye-button {
+    font-size: 18px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   button {
