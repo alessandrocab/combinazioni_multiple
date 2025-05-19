@@ -32,7 +32,7 @@ function normalizeAnswer(str) {
 
 function checkEnigma(number) {
   const answers = {
-    1: "9",
+    1: "8",
     2: "75",
     3: "stanzadellenecessita"
   };
