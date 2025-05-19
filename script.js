@@ -1,3 +1,13 @@
+function startExperience() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("main").style.display = "block";
+
+  const bgMusic = document.getElementById("bg-music");
+  bgMusic.play().catch(() => {
+    console.log("Autoplay bloccato, attendi un'interazione.");
+  });
+}
+
 function togglePassword() {
   const input = document.getElementById("passwordInput");
   input.type = input.type === "password" ? "text" : "password";
@@ -54,19 +64,6 @@ function goBack() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const bgMusic = document.getElementById('bg-music');
-
-  function enableAudio() {
-    bgMusic.play().catch(() => {
-      console.log("Autoplay bloccato");
-    });
-    document.removeEventListener('click', enableAudio);
-  }
-
-  document.addEventListener('click', enableAudio);
-});
-
 // MATRIX RAIN
 const canvas = document.getElementById("matrixRain");
 const ctx = canvas.getContext("2d");
@@ -86,7 +83,7 @@ function draw() {
   ctx.fillStyle = "#00ff88";
   ctx.shadowColor = "#00ff88";
   ctx.shadowBlur = 5;
-  ctx.font = bold ${fontSize}px monospace;
+  ctx.font = `bold ${fontSize}px monospace`;
 
   for (let i = 0; i < drops.length; i++) {
     const text = letters[Math.floor(Math.random() * letters.length)];
