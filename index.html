@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Caccia al Tesoro</title>
+  <title>Combinazione Segreta</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <!-- Matrix Rain Canvas -->
   <canvas id="matrixRain"></canvas>
 
+  <!-- Musica di sfondo -->
+  <audio id="bg-music" src="background.mp3" loop></audio>
+
+  <!-- Nebbia -->
+  <div class="fog-layer fog-back"></div>
+  <div class="fog-layer fog-front"></div>
+
+  <!-- FASE 0 - Intro -->
   <div class="container" id="intro">
     <h1>Benvenuto alla Caccia al Tesoro</h1>
-    <button onclick="startEnigma()">Inizia</button>
+    <button onclick="startExperience()">Inizia</button>
   </div>
 
+  <!-- FASE 1 - Combinazione -->
   <div class="container" id="main" style="display: none;">
     <h1>Inserisci la combinazione corretta</h1>
-    <input type="password" id="passwordInput" placeholder="Combinazione" />
-    <button onclick="togglePassword()">Mostra/Nascondi</button>
-    <button onclick="checkPassword()">Invia</button>
+    <div class="input-wrapper">
+      <input type="password" id="passwordInput" placeholder="Combinazione segreta" />
+      <button class="eye-button" onclick="togglePassword()">👁</button>
+    </div>
+    <button onclick="checkPassword()">Svela il segreto</button>
   </div>
 
-  <div class="container" id="revealed" style="display: none;">
-    <h2>Complimenti, combinazione corretta!</h2>
-    <button onclick="goBack()">Torna Indietro</button>
+  <!-- FASE 2 - Rivelazione -->
+  <div class="revealed" id="revealed" style="display: none;">
+    <div class="magic-text">✨ Hai scoperto il luogo segreto! ✨</div>
+    <button style="margin-top: 30px;" onclick="goBack()">⬅ Torna indietro</button>
   </div>
 
+  <!-- Alert personalizzato -->
   <div id="custom-alert" class="custom-alert hidden">
-    <p>Combinazione errata!</p>
-    <button onclick="closeCustomAlert()">Chiudi</button>
+    <div class="custom-alert-box">
+      <p>Combinazione errata</p>
+      <button onclick="closeCustomAlert()">OK</button>
+    </div>
   </div>
-
-  <audio id="bg-music" src="background.mp3" loop></audio>
 
   <script src="script.js"></script>
 </body>
-
 </html>
