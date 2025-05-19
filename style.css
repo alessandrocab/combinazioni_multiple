@@ -99,6 +99,7 @@ button:hover {
 .revealed button {
   margin-top: 0px;
   padding: 12px 24px;
+  position: center;
   font-size: 10px;
   width: auto;
   max-width: 100%;
