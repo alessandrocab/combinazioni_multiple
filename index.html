@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Combinazione Segreta</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="matrixRain"></canvas>
+  <audio id="bg-music" src="background.mp3" autoplay loop></audio>
+
+  <div class="fog-layer fog-back"></div>
+  <div class="fog-layer fog-front"></div>
+
+  <!-- Primo Enigma -->
+  <div class="container" id="riddle1">
+    <h1>Enigma 1</h1>
+    <p>Nel Mondo Magico chi ha sette anime e teme la lealtà?</p>
+    <input type="text" id="riddle1Answer" placeholder="Risposta..." />
+    <button onclick="checkRiddle1()">Avanti</button>
+  </div>
+
+  <!-- Secondo Enigma -->
+  <div class="container" id="riddle2" style="display:none;">
+    <h1>Enigma 2</h1>
+    <p>Parlo senza bocca e sento senza orecchie. Non ho corpo, ma vivo con il vento. Cosa sono?</p>
+    <input type="text" id="riddle2Answer" placeholder="Risposta..." />
+    <button onclick="checkRiddle2()">Avanti</button>
+  </div>
+
+  <!-- Password -->
+  <div class="container" id="main" style="display:none;">
+    <h1>Inserisci la combinazione corretta</h1>
+    <div class="input-wrapper">
+      <input type="password" id="passwordInput" placeholder="Combinazione segreta" />
+      <button class="eye-button" onclick="togglePassword()">👁</button>
+    </div>
+    <button onclick="checkPassword()">Svela il segreto</button>
+  </div>
+
+  <!-- Contenuto Rivelato -->
+  <div class="revealed" id="revealed" style="display: none;">
+    <div class="magic-text">✨ Hai scoperto il luogo segreto! ✨</div>
+    <button style="margin-top: 30px;" onclick="goBack()">⬅ Torna indietro</button>
+  </div>
+
+  <!-- Alert personalizzato -->
+  <div id="custom-alert" class="custom-alert hidden">
+    <div class="custom-alert-box">
+      <p>Combinazione errata</p>
+      <button onclick="closeCustomAlert()">OK</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
