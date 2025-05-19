@@ -8,42 +8,49 @@
   <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Matrix Rain Canvas -->
   <canvas id="matrixRain"></canvas>
+  <audio id="bg-music" src="background.mp3" autoplay loop></audio>
 
-  <!-- Musica di sfondo -->
-  <audio id="bg-music" src="background.mp3" loop></audio>
-
-  <!-- Nebbia -->
   <div class="fog-layer fog-back"></div>
   <div class="fog-layer fog-front"></div>
 
-  <!-- FASE 0 - Intro -->
-  <div class="container" id="intro">
-    <h1>Benvenuto alla Caccia al Tesoro</h1>
-    <button onclick="startExperience()">Inizia</button>
-  </div>
-
-  <!-- FASE 1 - Combinazione -->
-  <div class="container" id="main" style="display: none;">
-    <h1>Inserisci la combinazione corretta</h1>
+  <!-- STEP 1 -->
+  <div class="container" id="step-1">
+    <h1>Enigma 1</h1>
+    <p>Sono un numero a due cifre. La mia prima cifra è il numero di Horcrux creati da Voldemort.<br />
+    La mia seconda cifra è il numero di lettere nella parola ‘Lumos’.<br />
+    Chi sono?</p>
     <div class="input-wrapper">
-      <input type="password" id="passwordInput" placeholder="Combinazione segreta" />
-      <button class="eye-button" onclick="togglePassword()">👁</button>
+      <input type="password" id="input1" placeholder="Risposta..." />
+      <button class="eye-button" onclick="togglePassword('input1')">👁</button>
     </div>
-    <button onclick="checkPassword()">Svela il segreto</button>
+    <button onclick="checkStep1()">Rispondi</button>
   </div>
 
-  <!-- FASE 2 - Rivelazione -->
+  <!-- STEP 2 -->
+  <div class="container" id="step-2" style="display: none;">
+    <h1>Enigma 2</h1>
+    <p>Mi trovi solo quando davvero ne hai bisogno.<br />
+    Appaio, ma non sempre nello stesso luogo.<br />
+    Harry mi ha usata per combattere, per nascondersi e per riunirsi.<br />
+    Qual è il mio nome?</p>
+    <div class="input-wrapper">
+      <input type="password" id="input2" placeholder="Risposta..." />
+      <button class="eye-button" onclick="togglePassword('input2')">👁</button>
+    </div>
+    <button onclick="checkStep2()">Rispondi</button>
+  </div>
+
+  <!-- FINALE -->
   <div class="revealed" id="revealed" style="display: none;">
     <div class="magic-text">✨ Hai scoperto il luogo segreto! ✨</div>
     <button style="margin-top: 30px;" onclick="goBack()">⬅ Torna indietro</button>
   </div>
 
-  <!-- Alert personalizzato -->
+  <!-- ALERT PERSONALIZZATO -->
   <div id="custom-alert" class="custom-alert hidden">
     <div class="custom-alert-box">
-      <p>Combinazione errata</p>
+      <p>Risposta errata</p>
       <button onclick="closeCustomAlert()">OK</button>
     </div>
   </div>
