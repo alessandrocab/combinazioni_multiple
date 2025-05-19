@@ -1,104 +1,80 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enigma Wizard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caccia al Tesoro Magica</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <audio id="background-music" src="audio/background.mp3" autoplay loop></audio>
 
-  <div class="fog-layer fog-back"></div>
-  <div class="fog-layer fog-front"></div>
-  <canvas id="matrixRain"></canvas>
+<canvas id="matrixRain"></canvas>
 
-  <div class="container">
-    <h1>Enigma Wizard</h1>
+<audio id="bg-music" src="bg.mp3" loop></audio>
 
-    <div class="step active" id="step-1">
-      <h2>Enigma 1: L'inizio del sentiero</h2>
-      <div class="input-wrapper">
-        <input type="password" id="answer-1" placeholder="Inserisci la risposta">
-        <button class="eye-button" onclick="toggleVisibility('answer-1', this)">👁️</button>
-      </div>
-      <button onclick="checkAnswer(1, '75')">Continua</button>
-    </div>
+<!-- INTRO -->
+<div id="intro" class="container">
+  <h1>Benvenuto alla Caccia al Tesoro</h1>
+  <button onclick="startGame()">Inizia</button>
+</div>
 
-    <div class="step" id="step-2">
-      <h2>Enigma 2: Il nome nascosto</h2>
-      <div class="input-wrapper">
-        <input type="password" id="answer-2" placeholder="Inserisci la risposta">
-        <button class="eye-button" onclick="toggleVisibility('answer-2', this)">👁️</button>
-      </div>
-      <button onclick="checkAnswer(2, 'stanza delle necessita')">Continua</button>
-    </div>
-
-    <div class="step" id="step-3">
-      <h2>Complimenti!</h2>
-      <p>Hai completato tutti gli enigmi.</p>
-    </div>
+<!-- ENIGMA 1 -->
+<div id="enigma1" class="container hidden">
+  <h1>Inserisci la combinazione corretta</h1>
+  <div class="input-wrapper">
+    <input type="password" id="passwordInput1" placeholder="Combinazione" />
+    <button class="eye-button" onclick="togglePassword('passwordInput1')">&#128065;</button>
   </div>
+  <button onclick="checkPassword1()">Invia</button>
+</div>
 
-  <div class="custom-alert hidden" id="custom-alert">
-    <div class="custom-alert-box">
-      Risposta errata. Riprova!
-    </div>
+<!-- ENIGMA 2 -->
+<div id="enigma2" class="container hidden">
+  <h1>Enigma 1</h1>
+  <p>
+    “Sono un numero a due cifre. La mia prima cifra è il numero di Horcrux creati da Voldemort.<br>
+    La mia seconda cifra è il numero di lettere nella parola ‘Lumos’.<br>
+    Chi sono?”
+  </p>
+  <div class="input-wrapper">
+    <input type="password" id="passwordInput2" placeholder="Risposta" />
+    <button class="eye-button" onclick="togglePassword('passwordInput2')">&#128065;</button>
   </div>
+  <button onclick="checkPassword2()">Invia</button>
+</div>
 
-  <script>
-    const music = document.getElementById('background-music');
-    music.volume = 0.3;
+<!-- ENIGMA 3 -->
+<div id="enigma3" class="container hidden">
+  <h1>Enigma 2</h1>
+  <p>
+    “Mi trovi solo quando davvero ne hai bisogno.<br>
+    Appaio, ma non sempre nello stesso luogo.<br>
+    Harry mi ha usata per combattere, per nascondersi e per riunirsi.<br>
+    Qual è il mio nome?”
+  </p>
+  <div class="input-wrapper">
+    <input type="password" id="passwordInput3" placeholder="Risposta" />
+    <button class="eye-button" onclick="togglePassword('passwordInput3')">&#128065;</button>
+  </div>
+  <button onclick="checkPassword3()">Invia</button>
+</div>
 
-    function checkAnswer(step, correct) {
-      const input = document.getElementById(`answer-${step}`);
-      const value = input.value.trim().toLowerCase();
-      if (value === correct.toLowerCase()) {
-        document.getElementById(`step-${step}`).classList.remove('active');
-        const nextStep = document.getElementById(`step-${step + 1}`);
-        if (nextStep) {
-          nextStep.classList.add('active');
-        }
-      } else {
-        showAlert();
-      }
-    }
+<!-- CUSTOM ALERT -->
+<div id="custom-alert" class="custom-alert hidden">
+  <div class="custom-alert-box">
+    <p>Risposta errata! Riprova!</p>
+    <button onclick="closeCustomAlert()">Chiudi</button>
+  </div>
+</div>
 
-    function showAlert() {
-      const alertBox = document.getElementById('custom-alert');
-      alertBox.classList.remove('hidden');
-      setTimeout(() => alertBox.classList.add('hidden'), 2000);
-    }
+<!-- RIVELAZIONE FINALE -->
+<div id="revealed" class="revealed hidden">
+  <h1>Hai trovato il luogo!</h1>
+  <p>Recati alla Chiesa di San Nicolò a Guspini.</p>
+  <button onclick="goBack()">Torna all'inizio</button>
+</div>
 
-    function toggleVisibility(id, btn) {
-      const input = document.getElementById(id);
-      if (input.type === 'password') {
-        input.type = 'text';
-      } else {
-        input.type = 'password';
-      }
-    }
-
-    // Matrix Rain Effect
-    const canvas = document.getElementById('matrixRain');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const letters = Array(256).join("1").split("");
-
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#0F0";
-      letters.forEach((y_pos, index) => {
-        const text = String.fromCharCode(3e4 + Math.random() * 33);
-        const x_pos = index * 10;
-        ctx.fillText(text, x_pos, y_pos);
-        letters[index] = y_pos > canvas.height + Math.random() * 1e4 ? 0 : y_pos + 10;
-      });
-    }
-    setInterval(draw, 33);
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
