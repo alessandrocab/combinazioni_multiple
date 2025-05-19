@@ -101,7 +101,7 @@ button:hover {
   padding: 12px 24px;
   font-size: 20px;
   width: auto;
-  max-width: 300%;
+  max-width: 100%;
   background-color: #6a0dad;
   color: #fff;
   font-family: 'MedievalSharp', cursive;
