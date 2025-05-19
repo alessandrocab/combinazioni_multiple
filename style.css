@@ -20,6 +20,7 @@ body {
   box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
   text-align: center;
   animation: pulse-border 2s infinite;
+  border: 2px solid rgba(0, 191, 255, 0.8);
 }
 
 @keyframes pulse-border {
@@ -102,6 +103,16 @@ button:hover {
   width: auto;
   max-width: 90%;
   background-color: #6a0dad;
+  color: #fff;
+  font-family: 'MedievalSharp', cursive;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.revealed button:hover {
+  background-color: #8a2be2;
 }
 
 .custom-alert {
