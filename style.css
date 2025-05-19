@@ -79,38 +79,15 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
 .input-wrapper {
   position: relative;
   width: 100%;
   margin-bottom: 1.5rem;
-}
-
-.input-wrapper::after {
-  content: 'ᚠᚢᚦᚨᚱᛏᛁ';
-  position: absolute;
-  top: -1.6rem;
-  left: 0;
-  right: 0;
-  font-size: 1.6rem;
-  color: #ffd860;
-  text-align: center;
-  letter-spacing: 0.35rem;
-  pointer-events: none;
-  text-shadow:
-    -1px -1px 0px #000, 
-    1px -1px 0px #000,
-    -1px 1px 0px #000,
-    1px 1px 0 #000,
-    0 0 6px #ffcc33;
-  animation: runesGlow 3s infinite;
-}
-
-@keyframes runesGlow {
-  0%, 100% { opacity: 0.2; text-shadow: none; }
-  50% {
-    opacity: 0.8;
-    text-shadow: 0 0 8px #ffee66, 0 0 12px #ffcc33;
-  }
 }
 
 .input-wrapper input {
@@ -138,7 +115,6 @@ h1 {
   color: #003344;
   font-weight: bold;
   letter-spacing: 0.05em;
-  transition: all 0.3s ease-in-out;
 }
 
 .eye-button {
@@ -150,6 +126,8 @@ h1 {
   border: none;
   font-size: 1.4rem;
   cursor: pointer;
+  color: #333;
+  z-index: 2;
 }
 
 button {
@@ -191,46 +169,13 @@ button:hover {
   to { opacity: 1; transform: scale(1); }
 }
 
-.fog-layer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 400%;
-  height: 400%;
-  pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, rgba(220, 220, 220, 0.4), rgba(100, 100, 100, 0.2), rgba(0, 0, 0, 0) 70%);
-  opacity: 0.55;
-  mix-blend-mode: screen;
-  z-index: 3;
-}
-
-.fog-back {
-  animation: moveFogBack 80s linear infinite;
-}
-
-.fog-front {
-  animation: moveFogFront 45s linear infinite;
-}
-
-@keyframes moveFogBack {
-  0% { transform: translate(-20%, -20%) scale(1.5); }
-  50% { transform: translate(0%, 0%) scale(1.3); }
-  100% { transform: translate(-20%, -20%) scale(1.5); }
-}
-
-@keyframes moveFogFront {
-  0% { transform: translate(-40%, -40%) scale(1.6); }
-  50% { transform: translate(10%, 10%) scale(1.3); }
-  100% { transform: translate(-40%, -40%) scale(1.6); }
-}
-
 #matrixRain {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
   opacity: 0.12;
   filter: brightness(1.1) contrast(1.1);
@@ -259,53 +204,4 @@ button:hover {
   font-size: 1.2rem;
   font-family: 'MedievalSharp', cursive;
   color: #5a3e91;
-}
-
-/* ENIGMI STEP */
-
-.step {
-  display: none;
-  background: rgba(255, 255, 255, 0.75);
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 18px rgba(0, 150, 255, 0.3);
-  margin: 1rem auto;
-  max-width: 500px;
-  text-align: center;
-  animation: fadeIn 0.6s ease-in-out;
-  font-family: 'MedievalSharp', cursive;
-}
-
-.step.active {
-  display: block;
-}
-
-.step h2 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: #2e2e2e;
-}
-
-.step input {
-  padding: 0.7rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.step button {
-  background-color: #5a3e91;
-  color: white;
-  padding: 0.7rem 1.2rem;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.step button:hover {
-  background-color: #472f74;
 }
