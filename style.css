@@ -56,7 +56,7 @@ input[type="text"] {
 
 .input-wrapper input {
   width: 100%;
-  padding-right: 40px;
+  padding-right: 40px; /* spazio per l’occhio */
 }
 
 .eye-button {
@@ -68,7 +68,8 @@ input[type="text"] {
   font-size: 20px;
   cursor: pointer;
   border: none;
-  color: #ccc;
+  color: #666;
+  z-index: 2;
 }
 
 button {
