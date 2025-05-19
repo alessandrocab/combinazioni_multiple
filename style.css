@@ -1,40 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
+/* BODY */
 body {
   margin: 0;
+  padding: 0;
   font-family: 'MedievalSharp', cursive;
+  background-color: #0d0d0d;
   background-image: url('https://img.posterstore.com/zoom/wb0101-8harrypotter-thephilosophersstoneno150x70.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  color: #000;
+  color: #ffffff;
   overflow-x: hidden;
 }
 
-.container {
-  background-color: rgba(255, 255, 255, 0.85); /* bianco semi-trasparente */
+/* MATRIX RAIN CANVAS */
+#matrixRain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* CONTAINER BASE */
+.container,
+#intro,
+#enigma1,
+#enigma2,
+#enigma3,
+#revealed,
+.custom-alert {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
   margin: 30px auto;
   padding: 20px;
   border-radius: 20px;
   max-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
   text-align: center;
-  animation: pulse-border 2s infinite;
-  border: 2px solid rgba(0, 191, 255, 0.8);
+  border: 2px solid rgba(0, 255, 0, 0.6);
 }
 
+/* ANIMAZIONE BORDO */
 @keyframes pulse-border {
-  0% {
-    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(0, 191, 255, 1);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
-  }
+  0% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(0, 255, 0, 1); }
+  100% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.4); }
 }
 
+/* INPUT */
 input[type="password"],
 input[type="text"] {
   padding: 10px;
@@ -43,9 +61,12 @@ input[type="text"] {
   width: 100%;
   box-sizing: border-box;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
+  background-color: #222;
+  color: #fff;
 }
 
+/* OCCHIO PASSWORD */
 .input-wrapper {
   position: relative;
   margin-bottom: 10px;
@@ -60,12 +81,13 @@ input[type="text"] {
   font-size: 20px;
   cursor: pointer;
   border: none;
-  color: #000;
+  color: #ccc;
 }
 
+/* BUTTON */
 button {
-  background-color: #6a0dad;
-  color: #fff;
+  background-color: #00ff88;
+  color: #000;
   font-size: 18px;
   font-family: 'MedievalSharp', cursive;
   border: none;
@@ -73,49 +95,16 @@ button {
   padding: 10px 20px;
   margin-top: 10px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
   width: auto;
 }
 
 button:hover {
-  background-color: #8a2be2;
-}
-
-.revealed {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-image: url('chiesa.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-color: #00cc66;
   color: #fff;
-  text-align: center;
-  padding: 80px 20px;
-  z-index: 99;
 }
 
-.revealed button {
-  margin-top: 30px;
-  padding: 12px 24px;
-  font-size: 20px;
-  width: auto;
-  max-width: 300%;
-  background-color: #6a0dad;
-  color: #fff;
-  font-family: 'MedievalSharp', cursive;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  display: inline-block;
-}
-
-.revealed button:hover {
-  background-color: #8a2be2;
-}
-
+/* ALERT PERSONALIZZATO */
 .custom-alert {
   position: fixed;
   top: 50%;
@@ -144,6 +133,41 @@ button:hover {
   color: black;
 }
 
+/* REVEALED */
+.revealed {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-image: url('chiesa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+  z-index: 99;
+}
+
+.revealed button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 20px;
+  max-width: 90%;
+  background-color: #6a0dad;
+  color: #fff;
+  font-family: 'MedievalSharp', cursive;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.revealed button:hover {
+  background-color: #8a2be2;
+}
+
+/* NASCONDI ELEMENTI */
 .hidden {
   display: none;
 }
