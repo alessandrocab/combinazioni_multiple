@@ -109,7 +109,6 @@ button:hover {
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
-  display: inline-block;
 }
 
 .revealed button:hover {
