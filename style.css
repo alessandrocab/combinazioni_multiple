@@ -211,7 +211,18 @@ button:hover {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 0;
     pointer-events: none;
+    }
+  .container,
+  .revealed,
+  .revealed-content,
+  .input-wrapper,
+  button,
+  ,custom-alert {
+    position: relative;
+    z-index: -1;
     }
 }
