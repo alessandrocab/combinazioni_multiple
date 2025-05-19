@@ -7,18 +7,31 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  color: #fff;
+  color: #000;
   overflow-x: hidden;
 }
 
 .container {
-  background-color: rgba(0, 119, 190, 0.75); /* azzurro-magico trasparente */
-  margin: 40px auto;
-  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.85); /* bianco semi-trasparente */
+  margin: 30px 20px;
+  padding: 20px;
   border-radius: 20px;
   max-width: 400px;
-  box-shadow: 0 0 12px rgba(0, 174, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
   text-align: center;
+  animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 191, 255, 1);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+  }
 }
 
 input[type="password"],
@@ -46,7 +59,7 @@ input[type="text"] {
   font-size: 20px;
   cursor: pointer;
   border: none;
-  color: #fff;
+  color: #000;
 }
 
 button {
@@ -60,6 +73,7 @@ button {
   margin-top: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
+  width: auto;
 }
 
 button:hover {
@@ -68,11 +82,8 @@ button:hover {
 
 .revealed {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: fixed;
+  inset: 0;
   background-image: url('chiesa.jpg');
   background-size: cover;
   background-position: center;
@@ -82,6 +93,15 @@ button:hover {
   text-align: center;
   padding: 80px 20px;
   z-index: 99;
+}
+
+.revealed button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 20px;
+  width: auto;
+  max-width: 90%;
+  background-color: #6a0dad;
 }
 
 .custom-alert {
