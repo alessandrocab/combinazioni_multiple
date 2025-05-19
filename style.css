@@ -1,207 +1,125 @@
-body {
+/* Font e base */
+body, h1, p, button {
+  font-family: 'MedievalSharp', cursive;
+  color: #00ff00;
   margin: 0;
   padding: 0;
-  font-family: 'MedievalSharp', cursive;
-  background: url('https://img.posterstore.com/zoom/wb0101-8harrypotter-thephilosophersstoneno150x70.jpg') no-repeat center center fixed;
-  background-size: cover;
-  min-height: 100vh;
-  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  position: relative;
-  z-index: 1;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://www.transparenttextures.com/patterns/foggy-birds.png') repeat;
-  opacity: 0.35;
-  animation: moveFog 60s linear infinite;
-  z-index: 2;
-  pointer-events: none;
-}
-
-@keyframes moveFog {
-  from { background-position: 0 0; }
-  to { background-position: 1000px 0; }
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.7);
-  padding: 2rem 1rem;
-  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ff00;
   text-align: center;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 0 18px rgba(100, 200, 255, 0.3), 0 0 30px rgba(50, 150, 255, 0.2);
-  border: 4px solid rgba(50, 150, 200, 0.4);
   position: relative;
-  animation: fadeIn 1s ease-in-out;
-  backdrop-filter: blur(8px);
-  margin: auto;
-  z-index: 5;
+  z-index: 1;
+  width: 90%;
+  max-width: 500px;
 }
 
-.container::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  border-radius: 20px;
-  background: linear-gradient(120deg, #a0e7ff, #70cfff, #a0e7ff);
-  z-index: -1;
-  animation: pulseGlow 4s infinite ease-in-out;
-  filter: blur(8px);
-  opacity: 0.3;
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.2;
-    transform: scale(1);
-    filter: blur(4px);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(1.015);
-    filter: blur(7px);
-  }
-}
-
-h1 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-p {
+/* Input e bottoni */
+input[type="password"], input[type="text"] {
+  padding: 10px;
   font-size: 1rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+  background: black;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  border-radius: 5px;
+  outline: none;
 }
 
+button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background: #00ff00;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00cc00;
+}
+
+/* Occhio */
 .input-wrapper {
   position: relative;
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-.input-wrapper input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  background-color: #fff;
-  transition: 0.4s ease;
-  font-family: 'MedievalSharp', cursive;
-  color: #222;
-  box-shadow: inset 0 0 10px rgba(200, 200, 255, 0.4);
-}
-
-.input-wrapper input:focus {
-  outline: none;
-  border-color: #66ccff;
-  box-shadow:
-    0 0 10px #88ddff,
-    0 0 20px #66ccff,
-    inset 0 0 10px rgba(180, 230, 255, 0.5);
-  background-color: #f0fbff;
-  color: #003344;
-  font-weight: bold;
-  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
 }
 
 .eye-button {
   position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
+  right: 10px;
+  background: transparent;
   border: none;
-  font-size: 1.4rem;
   cursor: pointer;
-  color: #333;
-  z-index: 2;
+  font-size: 1.2rem;
+  color: #00ff00;
 }
 
-button {
-  padding: 0.8rem 1.4rem;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 10px;
-  background-color: #5a3e91;
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #472f74;
-}
-
+/* Finale */
 .revealed {
-  background-image: url('https://www.viaggiaescopri.it/wp-content/uploads/2012/10/Chiesa-di-San-Nicol%C3%B2-cosa-vedere-a-Guspini.jpg');
-  background-size: cover;
-  background-position: center;
-  position: fixed;
-  inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  z-index: 999;
-  color: white;
-  font-size: 2rem;
-  text-shadow: 2px 2px 5px black;
-  animation: fadeIn 0.8s ease-in-out;
-  text-align: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
   padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ff00;
+  position: relative;
+  z-index: 1;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+/* Alert personalizzato */
+.custom-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  color: #00ff00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
 }
 
+.custom-alert-box {
+  background: black;
+  padding: 2rem;
+  border: 1px solid #00ff00;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Matrix rain canvas */
 #matrixRain {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.12;
-  filter: brightness(1.1) contrast(1.1);
-}
-
-.custom-alert {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-}
-
-.custom-alert.hidden {
-  display: none;
-}
-
-.custom-alert-box {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255, 100, 0, 0.5);
-  text-align: center;
-  font-size: 1.2rem;
-  font-family: 'MedievalSharp', cursive;
-  color: #5a3e91;
+  z-index: -1;
+  background: black;
 }
