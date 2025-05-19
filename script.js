@@ -5,12 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const enigmas = document.getElementById('enigmas');
   const revealed = document.getElementById('revealed');
 
+  // Autoplay appena carica la pagina
+  window.addEventListener('click', () => {
+    audio.play().catch(() => {});
+  }, { once: true });
+
   startButton.addEventListener('click', () => {
     intro.style.display = 'none';
     enigmas.style.display = 'block';
     document.getElementById('enigma1').style.display = 'block';
-    audio.play().catch(err => console.log("Audio non riproducibile finché l'utente non interagisce"));
   });
+
+  startMatrixRain();
 });
 
 function togglePassword(inputId) {
@@ -39,6 +45,7 @@ function checkEnigma(num) {
       document.getElementById('revealed').style.display = 'flex';
     }
   } else {
+    new Audio('fail.mp3').play();
     showCustomAlert();
   }
 }
@@ -53,4 +60,35 @@ function closeCustomAlert() {
 
 function goBack() {
   location.reload();
+}
+
+function startMatrixRain() {
+  const canvas = document.getElementById('matrixRain');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const letters = 'アァイイウエカサタナハマヤラワABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const fontSize = 16;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0F0';
+    ctx.font = `${fontSize}px monospace`;
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 33);
 }
