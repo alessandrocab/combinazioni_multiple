@@ -18,45 +18,50 @@
   <button id="start-button">Inizia</button>
 </div>
 
-<!-- Enigma 1 -->
-<div id="enigma1" class="container" style="display: none;">
-  <h1>Inserisci la combinazione segreta</h1>
-  <div class="input-wrapper">
-    <input type="password" id="input1" placeholder="Combinazione">
-    <button class="eye-button" onclick="togglePassword('input1')">👁</button>
-  </div>
-  <button onclick="checkEnigma(1)">Conferma</button>
-</div>
+<!-- Raggruppo enigmi in un contenitore -->
+<div id="enigmas" style="display: none;">
 
-<!-- Enigma 2 -->
-<div id="enigma2" class="container" style="display: none;">
-  <h1>Enigma 2</h1>
-  <p>
-    “Sono un numero a due cifre. La mia prima cifra è il numero di Horcrux creati da Voldemort.<br>
-    La mia seconda cifra è il numero di lettere nella parola ‘Lumos’.<br>
-    Chi sono?”
-  </p>
-  <div class="input-wrapper">
-    <input type="password" id="input2" placeholder="Risposta">
-    <button class="eye-button" onclick="togglePassword('input2')">👁</button>
+  <!-- Enigma 1 -->
+  <div id="enigma1" class="container">
+    <h1>Inserisci la combinazione segreta</h1>
+    <div class="input-wrapper">
+      <input type="password" id="input1" placeholder="Combinazione">
+      <button class="eye-button" onclick="togglePassword('input1')">👁</button>
+    </div>
+    <button onclick="checkEnigma(1)">Conferma</button>
   </div>
-  <button onclick="checkEnigma(2)">Conferma</button>
-</div>
 
-<!-- Enigma 3 -->
-<div id="enigma3" class="container" style="display: none;">
-  <h1>Enigma 3</h1>
-  <p>
-    “Mi trovi solo quando davvero ne hai bisogno.<br>
-    Appaio, ma non sempre nello stesso luogo.<br>
-    Harry mi ha usata per combattere, per nascondersi e per riunirsi.<br>
-    Qual è il mio nome?”
-  </p>
-  <div class="input-wrapper">
-    <input type="password" id="input3" placeholder="Risposta">
-    <button class="eye-button" onclick="togglePassword('input3')">👁</button>
+  <!-- Enigma 2 -->
+  <div id="enigma2" class="container" style="display: none;">
+    <h1>Enigma 2</h1>
+    <p>
+      “Sono un numero a due cifre. La mia prima cifra è il numero di Horcrux creati da Voldemort.<br>
+      La mia seconda cifra è il numero di lettere nella parola ‘Lumos’.<br>
+      Chi sono?”
+    </p>
+    <div class="input-wrapper">
+      <input type="password" id="input2" placeholder="Risposta">
+      <button class="eye-button" onclick="togglePassword('input2')">👁</button>
+    </div>
+    <button onclick="checkEnigma(2)">Conferma</button>
   </div>
-  <button onclick="checkEnigma(3)">Conferma</button>
+
+  <!-- Enigma 3 -->
+  <div id="enigma3" class="container" style="display: none;">
+    <h1>Enigma 3</h1>
+    <p>
+      “Mi trovi solo quando davvero ne hai bisogno.<br>
+      Appaio, ma non sempre nello stesso luogo.<br>
+      Harry mi ha usata per combattere, per nascondersi e per riunirsi.<br>
+      Qual è il mio nome?”
+    </p>
+    <div class="input-wrapper">
+      <input type="password" id="input3" placeholder="Risposta">
+      <button class="eye-button" onclick="togglePassword('input3')">👁</button>
+    </div>
+    <button onclick="checkEnigma(3)">Conferma</button>
+  </div>
+
 </div>
 
 <!-- Finale -->
@@ -69,8 +74,8 @@
 <!-- Custom Alert -->
 <div id="custom-alert" class="custom-alert hidden">
   <div class="custom-alert-box">
-    <p>Risposta errata! Riprova!</p>
-    <button onclick="closeCustomAlert()">Chiudi</button>
+    <p id="alert-message">Risposta errata! Riprova!</p>
+    <button id="alert-ok-button" onclick="closeCustomAlert()">Chiudi</button>
   </div>
 </div>
 
