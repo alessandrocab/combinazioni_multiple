@@ -14,24 +14,7 @@
   <div class="fog-layer fog-back"></div>
   <div class="fog-layer fog-front"></div>
 
-  <!-- Primo Enigma -->
-  <div class="container" id="riddle1">
-    <h1>Enigma 1</h1>
-    <p>Nel Mondo Magico chi ha sette anime e teme la lealtà?</p>
-    <input type="text" id="riddle1Answer" placeholder="Risposta..." />
-    <button onclick="checkRiddle1()">Avanti</button>
-  </div>
-
-  <!-- Secondo Enigma -->
-  <div class="container" id="riddle2" style="display:none;">
-    <h1>Enigma 2</h1>
-    <p>Parlo senza bocca e sento senza orecchie. Non ho corpo, ma vivo con il vento. Cosa sono?</p>
-    <input type="text" id="riddle2Answer" placeholder="Risposta..." />
-    <button onclick="checkRiddle2()">Avanti</button>
-  </div>
-
-  <!-- Password -->
-  <div class="container" id="main" style="display:none;">
+  <div class="container" id="main">
     <h1>Inserisci la combinazione corretta</h1>
     <div class="input-wrapper">
       <input type="password" id="passwordInput" placeholder="Combinazione segreta" />
@@ -40,7 +23,6 @@
     <button onclick="checkPassword()">Svela il segreto</button>
   </div>
 
-  <!-- Contenuto Rivelato -->
   <div class="revealed" id="revealed" style="display: none;">
     <div class="magic-text">✨ Hai scoperto il luogo segreto! ✨</div>
     <button style="margin-top: 30px;" onclick="goBack()">⬅ Torna indietro</button>
