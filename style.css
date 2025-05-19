@@ -82,7 +82,9 @@ button:hover {
 }
 
 .revealed {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   inset: 0;
   background-image: url('chiesa.jpg');
@@ -91,27 +93,34 @@ button:hover {
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: #fff;
-  text-align: center;
-  padding: 80px 20px;
   z-index: 99;
+  text-align: center;
 }
 
-#revealed button {
+.revealed-content {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 90%;
+  width: 400px;
+}
+
+.revealed-content button {
   display: inline-block;
   margin-top: 20px;
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 16px;
+  width: auto;
   background-color: #6a0dad;
   color: #fff;
   font-family: 'MedievalSharp', cursive;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
-  margin: 0 auto;
 }
 
-#revealed button:hover {
+.revealed-content button:hover {
   background-color: #8a2be2;
 }
 
