@@ -166,6 +166,10 @@ button:hover {
 }
 
 @media (max-width: 480px) {
+  body {
+  padding-left: 10px;
+  padding-right: 10px;
+}
   .container,
   #intro,
   #enigma1,
