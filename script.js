@@ -1,60 +1,72 @@
-let currentStep = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('background-music');
+  const startButton = document.getElementById('start-button');
+  const intro = document.getElementById('intro');
+  const enigmasContainer = document.getElementById('enigmas');
+  const revealedContainer = document.getElementById('revealed');
+  const customAlert = document.getElementById('custom-alert');
+  const alertMessage = document.getElementById('alert-message');
+  const successSound = new Audio('success.mp3');
 
-function togglePassword() { const input = document.getElementById("passwordInput"); input.type = input.type === "password" ? "text" : "password"; }
+  const steps = [
+    { answer: '1234', element: document.getElementById('enigma1') },
+    { answer: '75', element: document.getElementById('enigma2') },
+    { answer: 'stanza delle necessità', element: document.getElementById('enigma3') }
+  ];
 
-function showCustomAlert(message = "Combinazione errata") { document.querySelector("#custom-alert p").textContent = message; document.getElementById("custom-alert").classList.remove("hidden"); }
+  let currentStep = 0;
 
-function closeCustomAlert() { document.getElementById("custom-alert").classList.add("hidden"); }
+  startButton.addEventListener('click', () => {
+    intro.style.display = 'none';
+    enigmasContainer.style.display = 'block';
+    try {
+      audio.play();
+    } catch (e) {
+      console.warn("Autoplay non consentito");
+    }
+  });
 
-function checkPassword() { const input = document.getElementById("passwordInput").value.trim().toLowerCase(); const bgMusic = document.getElementById("bg-music");
+  function showAlert(message) {
+    alertMessage.textContent = message;
+    customAlert.classList.remove('hidden');
+  }
 
-if (currentStep === 0 && input === "75") { document.getElementById("step-1").style.display = "none"; document.getElementById("step-2").style.display = "block"; currentStep = 1; new Audio("success.mp3").play(); } else if (currentStep === 1 && (input === "stanza delle necessita" || input === "stanza delle necessità")) { document.getElementById("step-2").style.display = "none"; document.getElementById("revealed").style.display = "flex"; bgMusic.pause(); bgMusic.currentTime = 0; new Audio("success.mp3").play(); } else { showCustomAlert(); bgMusic.pause();
+  document.getElementById('alert-ok-button').addEventListener('click', () => {
+    customAlert.classList.add('hidden');
+  });
 
-const failAudio = new Audio("fail.mp3");
-failAudio.play().catch(() => {
-  console.log("Errore nella riproduzione dell'audio.");
-});
+  function checkAnswer() {
+    const step = steps[currentStep];
+    const input = step.element.querySelector('input');
+    const userAnswer = input.value.trim().toLowerCase();
 
-failAudio.addEventListener("ended", () => {
-  bgMusic.currentTime = 0;
-  bgMusic.play().catch(() => {
-    console.log("Autoplay bloccato");
+    if (userAnswer === step.answer.toLowerCase()) {
+      successSound.play();
+      step.element.style.display = 'none';
+      currentStep++;
+
+      if (currentStep < steps.length) {
+        steps[currentStep].element.style.display = 'block';
+      } else {
+        enigmasContainer.style.display = 'none';
+        revealedContainer.style.display = 'flex';
+      }
+    } else {
+      showAlert('Risposta errata! Riprova.');
+    }
+  }
+
+  // Setup submit buttons for each enigma
+  steps.forEach((step, index) => {
+    const button = step.element.querySelector('button');
+    button.addEventListener('click', checkAnswer);
+  });
+
+  // Mostra/nascondi password su click sull’occhio
+  document.querySelectorAll('.eye-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const input = button.previousElementSibling;
+      input.type = input.type === 'password' ? 'text' : 'password';
+    });
   });
 });
-
-} }
-
-function goBack() { const bgMusic = document.getElementById("bg-music"); document.getElementById("revealed").style.display = "none"; document.getElementById("step-1").style.display = "block"; document.getElementById("passwordInput").value = ""; currentStep = 0;
-
-if (bgMusic) { bgMusic.currentTime = 0; bgMusic.play().catch(() => { console.log("Audio bloccato, attendi un'interazione."); }); } }
-
-document.addEventListener('DOMContentLoaded', () => { const bgMusic = document.getElementById('bg-music');
-
-function enableAudio() { bgMusic.play().catch(() => { console.log("Autoplay bloccato"); }); document.removeEventListener('click', enableAudio); }
-
-document.addEventListener('click', enableAudio); });
-
-// MATRIX RAIN const canvas = document.getElementById("matrixRain"); const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-
-const letters = "アァイィウヴエカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン0123456789".split(""); const fontSize = 14; const columns = canvas.width / fontSize; const drops = Array.from({ length: columns }, () => 1);
-
-function draw() { ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-ctx.fillStyle = "#00ff88"; ctx.shadowColor = "#00ff88"; ctx.shadowBlur = 5; ctx.font = bold ${fontSize}px monospace;
-
-for (let i = 0; i < drops.length; i++) { const text = letters[Math.floor(Math.random() * letters.length)]; ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-  drops[i] = 0;
-}
-
-drops[i]++;
-
-} }
-
-setInterval(draw, 40);
-
-window.addEventListener("resize", () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-
